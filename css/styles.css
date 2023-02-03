@@ -5142,7 +5142,7 @@ fieldset:disabled .btn {
 
 .navbar-dark .navbar-nav .show>.nav-link,
 .navbar-dark .navbar-nav .nav-link.active {
-  color: #fff;
+  color: rgb(1, 127, 145);
 }
 
 .navbar-dark .navbar-toggler {
