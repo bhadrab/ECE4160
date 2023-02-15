@@ -74,6 +74,30 @@
                     <img src="assets/img/lab2MACaddress.png" alt="..." width="100%" />
                 </div>
             </div>
+            
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Codebase</h3>
+                    <p>
+                        The codebase contains files for the Artemis and computer side. 
+                    </p>
+                    <p>
+                        The Artemis side is in Arduino, there is a file that formats character arrays, a file 
+                        that facilitates in sending and receiving data using BLE methods, and a file that 
+                        responds to various commands. 
+                    </p>
+                    <p>                  
+                        The computer side is written in python. A UUID or MAC address is used to connect this 
+                        side to the Artemis side. The ArtemisBLEController class provides functions that allow 
+                        the sending and receiving of data between the Artemis and Computer. 
+                    </p>
+                    <p>
+                        The Arduino code is uploaded to the Artemis. When the artemis updates a characteristic in the BLE service, 
+                        the computer side can receive that information. The computer can also send commands to the Artemis. 
+                    </p>
+                    <img src="assets/img/lab2MACaddress.png" alt="..." width="100%" />
+                </div>
+            </div>
 
             
 
