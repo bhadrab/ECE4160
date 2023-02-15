@@ -146,18 +146,35 @@
                         readings. I kept track of the time when the loop was entered and after the readings were taken
                         to see how quickly the loop executes. It seemed to take between 9ms and 10ms. We can see that
                         the loop time when readings were not ready was 4-5ms so the readings themselves take half the
-                        time which is limiting the speed. However, this is a very good sample rate. 
+                        time which is limiting the speed. However, this is a very good sample rate.
                     </p>
                     <script src="https://gist.github.com/bhadrab/286616c1a49258e9a5b49841463625b7.js"></script>
                     <img src="assets/img/lab3tofspeed.png" alt="..." width="100%" />
-                    
+
                 </div>
             </div>
 
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">Subheading</h3>
-                    <p>Text.</p>
+                    <h3 class="mb-0">Task 5: Send Data to Computer</h3>
+                    <p>
+                        I modified my code from lab 2 so that I could send TOF data from the Artemis to the computer via
+                        bluetooth. I added all the setup code I wrote for this lab to ble_arduino.ino and then I added a
+                        case for GET_TOF_5s. I collected data from both sensors for 5 seconds. I sent back a timestamped
+                        string containing a reading from each sensor.
+                    </p>
+                    <script src="https://gist.github.com/bhadrab/f61597d28e13b88dfbc906ac22b9923e.js"></script>
+
+
+                    <p>
+                        On the computer side I created a handler for the TOF data. I created 3 arrays, 1 for time, 1 for
+                        TOF1 data, and 1 for TOF2 data. In the handler I parsed through the received byte array and
+                        added the appropriate parts of it to the appropriate arrays. I then used matplot.lib to plot
+                        both the distances over time.
+                    </p>
+                    <script src="https://gist.github.com/bhadrab/d1724a36211ce06fd0e6ee6b640c9b86.js"></script>
+                    <img src="assets/img/lab3tofplot.png" alt="..." width="50%" />
+
                 </div>
             </div>
 
