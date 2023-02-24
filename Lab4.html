@@ -51,8 +51,10 @@
     <section class="resume-section" id="experience">
         <div class="resume-section-content">
             <h2 class="mb-2">Lab 4 <span class="text-primary">IMU</span></h2>
-            <p class="mb-5">The goal of this lab was to get pitch and roll using the accelerometer and the gyroscope on
-                the IMU </p>
+            <p class="mb-5">
+                The goal of this lab was to use the accelerometer and gyroscope on the 9DOF IMU sensor to collect
+                accurate and reliable information about the robots position.
+            </p>
 
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
@@ -67,14 +69,20 @@
                         dimension showed the acceleration due to gravity. The gyroscope data was cleaner and simply
                         rotating the IMU was enough to see changes in the data.
                     </p>
-                    <p>
-                        This image shows the outputs from the example code when the IMU is flat.
-                    </p>
-                    <img class="mb-3" src="assets/img/lab4examplecode.png" alt="..." width="100%" />
                     <iframe width="320" height="560" src="https://www.youtube.com/embed/E8Usil6-i7I" title="lab4observe"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
+                    <br />
+                    <br />
+                    <p>
+                        This image shows the outputs from the example code when the IMU is flat.
+                    </p>
+                    <img class="mb-3" src="assets/img/lab4examplecode.png" alt="..." width="100%" />
+                    <br />
+                    <br />
+
+
 
                     <p>
                         The AD0_VAL definition should be set to 1 since the ADR jumper was not closed on the IMU.
@@ -141,7 +149,8 @@
                     <script src="https://gist.github.com/bhadrab/e3995e59e095e873ca4316abe564181a.js"></script>
 
                     <p>
-                        I played around with it and I noticed that it was accurate (matched accelerometer values) and
+                        I played around with it and I noticed that it was accurate (better than accelerometer values)
+                        and
                         not noisy but any sudden changes would cause the error to grow quickly and the data would be
                         biased.
                     </p>
@@ -154,7 +163,7 @@
                         To fix the biasing issue but take advantage of the accuracy I created a complementary filter. I
                         played around with the weights for the gyro data and the accelerometer data and decided to give
                         90% of the weight to the gyro. This resulted in the most accurate but stable measurements. The
-                        constraint from the accelerometer remained, that is, if the pitch or roll exceed a 90 degree
+                        constraint from the accelerometer remained, that is, if the pitch or roll exceeds a 90 degree
                         rotation, the other value will behave unexpectedly. So, it is accurate and reliable in the 90 to
                         -90 range as seen in the video below.
                     </p>
@@ -177,15 +186,20 @@
                         simultaneously and data will be sent to the computer whenever it is ready in 2 separate strings.
                     </p>
                     <script src="https://gist.github.com/bhadrab/50b89995c450ff5d6b546b24fed64995.js"></script>
+                    <br />
+                    <br />
                     <p>
                         Image of IMU data (0 degrees pitch and roll) sent over BLE and parsed using call back function.
+                    </p>
+                    <img class="" src="assets/img/lab4bledata1.png" alt="..." width="80%" />
+                    <img class="mb-3" src="assets/img/lab4bledata2.png" alt="..." width="80%" />
+                    <img class="mb-6" src="assets/img/lab40pr.png" alt="..." width="40%" />
+                    <p>
                         I noticed that the first few values were always noisy but after a few seconds that data was
                         accurate. I tried debugging this issue but I was not successful. When I am using this data as
                         control inputs I will make sure to add a delay to ensure I am using accurate measurements.
                     </p>
-                    <img class="" src="assets/img/lab4bledata1.png" alt="..." width="80%" />
-                    <img class="mb-3" src="assets/img/lab4bledata2.png" alt="..." width="80%" />
-                    <img class="mb-3" src="assets/img/lab40pr.png" alt="..." width="40%" />
+                    <br />
 
                     <p>
                         5 seconds of IMU and TOF data sent over BLE and parsed using separate call back functions.
@@ -195,8 +209,8 @@
 
                     <p>
                         I noticed that the sampling rate was significantly reduced when both were being sent so I
-                        decided to collect data for 5s and store it in the string (on the Artemis side) instead of
-                        sending new measurements as they are received.
+                        decided to collect and send 5s of data at a time instead of sending new measurements as they are
+                        received.
                     </p>
 
                 </div>
@@ -229,18 +243,23 @@
                         title="Lab4stuntnoartemis" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
+                    <br />
+                    <br />
                     <p>
                         I then attached the Artemis along with the battery and sensors to the car and made it do some
                         stunts while sending sensor data over BLE.
                     </p>
                     <iframe width="320" height="560" src="https://www.youtube.com/embed/66Sc47SaVRw" title="Lab4stunt"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+
+                    <br />
+                    <br />
                     <p>
                         I plotted the received data and noticed expected behavior.
                     </p>
-                    
+
                     <img class="mb-3" src="assets/img/lab4final.png" alt="..." width="60%" />
                 </div>
             </div>
