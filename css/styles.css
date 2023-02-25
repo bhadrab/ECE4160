@@ -4686,9 +4686,10 @@ fieldset:disabled .btn {
 }
 
 .navbar-nav-scroll {
-  max-height: var(--bs-scroll-height, 75vh);
-  overflow-y: auto;
+  max-height: var(--bs-scroll-height, 90vh);
+  overflow-y: scroll;
 }
+
 
 @media (min-width: 576px) {
   .navbar-expand-sm {
@@ -4710,7 +4711,7 @@ fieldset:disabled .btn {
   }
 
   .navbar-expand-sm .navbar-nav-scroll {
-    overflow: visible;
+    overflow-y: scroll;
   }
 
   .navbar-expand-sm .navbar-collapse {
@@ -4750,7 +4751,7 @@ fieldset:disabled .btn {
     display: flex;
     flex-grow: 0;
     padding: 0;
-    overflow-y: visible;
+    overflow-y: scroll;
   }
 }
 
@@ -4774,7 +4775,7 @@ fieldset:disabled .btn {
   }
 
   .navbar-expand-md .navbar-nav-scroll {
-    overflow: visible;
+    overflow-y: scroll;
   }
 
   .navbar-expand-md .navbar-collapse {
@@ -4814,7 +4815,7 @@ fieldset:disabled .btn {
     display: flex;
     flex-grow: 0;
     padding: 0;
-    overflow-y: visible;
+    overflow-y: scroll;
   }
 }
 
@@ -4838,7 +4839,7 @@ fieldset:disabled .btn {
   }
 
   .navbar-expand-lg .navbar-nav-scroll {
-    overflow: visible;
+    overflow-y: scroll;
   }
 
   .navbar-expand-lg .navbar-collapse {
@@ -4878,7 +4879,7 @@ fieldset:disabled .btn {
     display: flex;
     flex-grow: 0;
     padding: 0;
-    overflow-y: visible;
+    overflow-y: scroll;
   }
 }
 
@@ -4902,7 +4903,7 @@ fieldset:disabled .btn {
   }
 
   .navbar-expand-xl .navbar-nav-scroll {
-    overflow: visible;
+    overflow-y: scroll;
   }
 
   .navbar-expand-xl .navbar-collapse {
@@ -4942,7 +4943,7 @@ fieldset:disabled .btn {
     display: flex;
     flex-grow: 0;
     padding: 0;
-    overflow-y: visible;
+    overflow-y: scroll;
   }
 }
 
@@ -4966,7 +4967,7 @@ fieldset:disabled .btn {
   }
 
   .navbar-expand-xxl .navbar-nav-scroll {
-    overflow: visible;
+    overflow-y: scroll;
   }
 
   .navbar-expand-xxl .navbar-collapse {
@@ -5006,7 +5007,7 @@ fieldset:disabled .btn {
     display: flex;
     flex-grow: 0;
     padding: 0;
-    overflow-y: visible;
+    overflow-y: scroll;
   }
 }
 
@@ -5029,7 +5030,7 @@ fieldset:disabled .btn {
 }
 
 .navbar-expand .navbar-nav-scroll {
-  overflow: visible;
+  overflow-y: scroll;
 }
 
 .navbar-expand .navbar-collapse {
@@ -5069,7 +5070,7 @@ fieldset:disabled .btn {
   display: flex;
   flex-grow: 0;
   padding: 0;
-  overflow-y: visible;
+  overflow-y: scroll;
 }
 
 .navbar-light .navbar-brand {
@@ -12299,7 +12300,21 @@ p.lead {
   outline-color: #d48a6e;
 }
 
+/*chrome safari opera*/
+.hidescrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hidescrollbar{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
 @media (min-width: 992px) {
+  .navbar-nav{    
+    padding-left: 0;
+    padding-right: 2;
+  }
   #sideNav {
     padding-left: 0;
     padding-right: 0;
@@ -12312,6 +12327,8 @@ p.lead {
     width: 10rem;
     height: 100vh;
   }
+  
+
 
   #sideNav .navbar-brand {
     display: flex;
