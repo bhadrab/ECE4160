@@ -90,7 +90,7 @@
         <div class="resume-section-content">
             <h2 class="mb-2">Lab 5 <span class="text-primary">Motors and Open Loop Control</span></h2>
             <p class="mb-5">
-                The goal of this lab was to setup the motor drivers, install everything on the car, and demonstrate open
+                The goal of this lab was to setup the motor drivers, install all hardware on the Robot, and demonstrate open
                 loop control.
             </p>
 
@@ -102,15 +102,15 @@
                     <p>
                         I read through the datasheet for the motor driver and understood the pin functions. The motor
                         drivers have two inputs and outputs which will be coupled together in order to deliver enough
-                        current to the motor. So, a single dual controller will power a single motor.
+                        current to the motor. So, a single dual driver will power a single motor.
                     </p>
                     <p>
                         Knowing that all the GPIO pins on the Artemis are PWM capable, I decided to use pins A2, A3, 4,
                         and A5 as the inputs to the drivers as they are on the same side as the pin I soldered for the
-                        TOF sensor which would save space when installing it in the car. I soldered as shown in the
+                        TOF sensor which would save space when installing it in the Robot. I soldered as shown in the
                         diagram using stranded wire and heat shrink. I also twisted cables to reduce EMI. I used the car
                         as a rough reference to determine the optimal length of the wires. I decided to solder all
-                        connections so that they were secure as the car moved and bumped around.
+                        connections so that they were secure as the Robot moved and bumped around.
                     </p>
                     <img class="mb-5" src="assets/img/lab5driverhookup.png" alt="" title="" height="400px" />
 
@@ -167,7 +167,7 @@
                     <p>
                         I replaced the power supply with the 850 mAh battery and verified the behavior. I then repeated
                         the above steps with the second motor driver. At this point, all four wheels were spinning and I
-                        had a moving car.
+                        had a moving Robot.
                     </p>
                 </div>
             </div>
@@ -178,7 +178,7 @@
                     <p>
                         The artemis along with the 650mAh battery only fit in the back cavity so they went there along
                         with the IMU. I velcroed these three together to have a strong but temporary bind to make
-                        repairs easier. I had already decided that the TOF’s should be in the front. I attached them
+                        repairs easier. I had already decided that the TOFs should be in the front. I attached them
                         with some double sided tape. I then cut a hole in the battery compartment and put the motor
                         drivers on the other side as that space was not being utilized much. I twisted all wires, and
                         cut and resoldered any that were too long to reduce EMI.
@@ -194,7 +194,7 @@
                     <p>
                         If starting from rest, I found that the lowest PWM value for which the Robot moves was 40 on
                         both sides. But, if it is already moving with a higher PWM, the robot is able to move at PWM
-                        30.I tested this by steadily increasing the value from 0 and observing when movement began.
+                        30. I tested this by steadily increasing the value from 0 and observing when movement began.
                     </p>
                 </div>
             </div>
