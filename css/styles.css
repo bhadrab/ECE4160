@@ -12324,7 +12324,7 @@ p.lead {
     left: 0;
     display: flex;
     flex-direction: column;
-    width: 10rem;
+    width: 13rem;
     height: 100vh;
   }
   
@@ -12428,7 +12428,7 @@ section.resume-section .resume-section-content {
 
 @media (min-width: 992px) {
   section.resume-section {
-    padding-left: 0.01rem;
+    padding-left: 2rem;
     padding-right: 3rem;
     padding-top: 5rem;
     padding-bottom: 5rem;
