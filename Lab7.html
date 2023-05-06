@@ -108,20 +108,20 @@
                     <p>
                         In class we learnt:
                     </p>
-                    <img class="mb-0" src="assets/img/lab7eq1.png" alt="" title="" height="60px">
+                    <img class="mb-0" src="assets/img/lab7eq1.png" alt="" title="" height="70px">
                     <p>
                         From the graph I found the steady state velocity to be 1500mm/s. Taking <em>u</em> to be 1, we
                         get
                     </p>
-                    <img class="mb-0" src="assets/img/lab7eq2.png" alt="" title="" height="60px">
+                    <img class="mb-0" src="assets/img/lab7eq2.png" alt="" title="" height="70px">
                     <p>
-                        I then found the 90% rise time to be 2.269s which gives us
+                        I then found the 90% rise time to be 1.5s which gives us
                     </p>
-                    <img class="mb-0" src="assets/img/lab7eq3.png" alt="" title="" height="80px">
+                    <img class="mb-0" src="assets/img/lab7eq3.png" alt="" title="" height="70px">
                     <p>
                         Using these values we can find our A and B matrices
                     </p>
-                    <img class="mb-0" src="assets/img/lab7eq4.png" alt="" title="" height="200px">
+                    <img class="mb-0" src="assets/img/lab7eq4.png" alt="" title="" height="150px">
                 </div>
             </div>
 
@@ -152,25 +152,29 @@
                     <h3 class="mb-0">Implementing and Testing in Jupyter</h3>
                     <p>
                         I ran the Kalman filter on Jupyter to check that my parameters were correct. I used the code
-                        provided and my data from lab 6. I first ran it with the values discussed above and then updated
-                        the parameters based on the results to make the KF prediction match the actual data better.
+                        provided and my data from lab 6.
                     </p>
+                    <script src="https://gist.github.com/bhadrab/54b533e48a67535891535ce44ccdf91d.js"></script>
                     <p>
                         Initial test: &sigma;<sub>1</sub> = &sigma;<sub>2</sub> = 39 and &sigma;<sub>3</sub> = 20
                     </p>
                     <img class="mb-4" src="assets/img/lab7plot2.png" alt="" title="" width="60%">
                     <p>
-                        I noticed that increasing &sigma;<sub>1</sub> and &sigma;<sub>2</sub> or decreasing
-                        &sigma;<sub>3</sub> made the KF prediction match the measured data better. This makes sense
-                        because by doing this we are putting more trust in our sensor data.
+                        To my surprise it worked extremely well (so surprisingly well that I really thought I must have
+                        done something wrong so I went through and checked my code and calculations multiple times), the
+                        predicted values were very close to the measured values. I still experimented with different
+                        values because I was curious about how the filter would be affected. I noticed that lower
+                        sigma;<sub>1</sub> and &sigma;<sub>2</sub> or higher &sigma;<sub>3</sub> made the KF prediction
+                        match the measured data better. This makes sense because by doing this we are putting more trust
+                        in our sensor data.
                     </p>
 
                     <p>
-                        &sigma;<sub>1</sub> = &sigma;<sub>2</sub> = 80 and &sigma;<sub>3</sub> = 20
+                        &sigma;<sub>1</sub> = &sigma;<sub>2</sub> = 10 and &sigma;<sub>3</sub> = 100
                     </p>
                     <img class="mb-4" src="assets/img/lab7plot3.png" alt="" title="" width="60%">
                     <p>
-                        &sigma;<sub>1</sub> = &sigma;<sub>2</sub> = 39 and &sigma;<sub>3</sub> = 5
+                        &sigma;<sub>1</sub> = &sigma;<sub>2</sub> = 1 and &sigma;<sub>3</sub> = 20
                     </p>
                     <img class="mb-4" src="assets/img/lab7plot4.png" alt="" title="" width="60%">
                 </div>
@@ -179,9 +183,27 @@
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
                     <h3 class="mb-0">Kalman Filter on Robot</h3>
-                    <p>Text.</p>
+                    <p>
+                        The goal was to recreate the task in lab 6 (speed towards a wall and stop 1 foot in front of it)
+                        using the KF so that it would be faster. I increased my kp to 0.06 (the speed of the KF allowed
+                        for this). I also increased my minimum PWM from 40 to 50 since for some reason my robot was no
+                        longer moving at 40 PWM input even though the battery was fully charged. This worked incredibly
+                        well with no overshoot and quite precisely stopping at 1 foot.
+                    </p>
+                    <img class="mb-4" src="assets/img/lab7plot5.png" alt="" title="" width="60%">
+                    <img class="mb-4" src="assets/img/lab7plot6.png" alt="" title="" width="60%">
+                    <br>
+                    <video class="mb-3" width="300" controls="">
+                        <source src="assets/img/lab7.mp4" type="video/mp4">
+                    </video>
+                    
+                    <script src="https://gist.github.com/bhadrab/5251c927bab5cd73b3c909db1d7c1b3c.js"></script>
                 </div>
             </div>
+
+            <p>
+                I referred to <a href="https://anyafp.github.io/ece4960/labs/lab7/">Anya's</a> and <a href="https://pages.github.coecis.cornell.edu/rc627/ECE-4960/lab7.html">Ryan's</a> pages whenever I was confused.
+            </p>
 
 
 
