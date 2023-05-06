@@ -104,6 +104,7 @@
                         for 4m. I collected timestamped distance data from the ToF during the run and used that to
                         calculate the velocity.
                     </p>
+                    <img class="mb-3" src="assets/img/lab7plot1.png" alt="" title="" width="60%">
                     <p>
                         In class we learnt:
                     </p>
@@ -127,30 +128,61 @@
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
                     <h3 class="mb-0">Initialising Kalman Filter</h3>
-                    <p>Using the values for drag and momentum we can find our A and B matrices </p>
+                    <p>
+                        Using a sampling time of 0.065s (time between first two samples) I discretized the A and B
+                        matrices. I initialised the C matrix to be [-1, 0] since only ToF data is used and negative
+                        distance is measured. The state vector was initialised with the initial distance from the wall
+                        and 0 velocity as it was stationary.
+                    </p>
+                    <img class="mb-0" src="assets/img/lab7eq5.png" alt="" title="" height="220px">
+
+                    <p>
+                        I initialised the covariance matrices for the process &Sigma;<sub>u</sub> and sensor
+                        &Sigma;<sub>z</sub> noise. &sigma;<sub>3</sub> was given to us and the formulas for the trust
+                        in the modelled position and speed were used for &sigma;<sub>1</sub> and &sigma;<sub>2</sub>.
+                    </p>
+                    <img class="mb-4" src="assets/img/lab7eq6.png" alt="" title="" height="220px">
+
+                    <script src="https://gist.github.com/bhadrab/2a846ef592cb255a5ad614c9ea6cdb80.js"></script>
                 </div>
             </div>
 
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
                     <h3 class="mb-0">Implementing and Testing in Jupyter</h3>
-                    <p>Text.</p>
+                    <p>
+                        I ran the Kalman filter on Jupyter to check that my parameters were correct. I used the code
+                        provided and my data from lab 6. I first ran it with the values discussed above and then updated
+                        the parameters based on the results to make the KF prediction match the actual data better.
+                    </p>
+                    <p>
+                        Initial test: &sigma;<sub>1</sub> = &sigma;<sub>2</sub> = 39 and &sigma;<sub>3</sub> = 20
+                    </p>
+                    <img class="mb-4" src="assets/img/lab7plot2.png" alt="" title="" width="60%">
+                    <p>
+                        I noticed that increasing &sigma;<sub>1</sub> and &sigma;<sub>2</sub> or decreasing
+                        &sigma;<sub>3</sub> made the KF prediction match the measured data better. This makes sense
+                        because by doing this we are putting more trust in our sensor data.
+                    </p>
+
+                    <p>
+                        &sigma;<sub>1</sub> = &sigma;<sub>2</sub> = 80 and &sigma;<sub>3</sub> = 20
+                    </p>
+                    <img class="mb-4" src="assets/img/lab7plot3.png" alt="" title="" width="60%">
+                    <p>
+                        &sigma;<sub>1</sub> = &sigma;<sub>2</sub> = 39 and &sigma;<sub>3</sub> = 5
+                    </p>
+                    <img class="mb-4" src="assets/img/lab7plot4.png" alt="" title="" width="60%">
                 </div>
             </div>
 
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">Subheading</h3>
+                    <h3 class="mb-0">Kalman Filter on Robot</h3>
                     <p>Text.</p>
                 </div>
             </div>
 
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h3 class="mb-0">Subheading</h3>
-                    <p>Text.</p>
-                </div>
-            </div>
 
 
         </div>
