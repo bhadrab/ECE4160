@@ -86,20 +86,123 @@
     </nav>
     <!-- Page Content-->
 
+
+
     <section class="resume-section" id="experience">
         <div class="resume-section-content">
-            <h2 class="mb-5">Lab 10 <span class="text-primary">Localization (sim)</span></h2>
+            <h2 class="mb-2">Lab 10 <span class="text-primary">Localisation Simulation</span></h2>
+            <p class="mb-5">
+                The goal of this lab is to implement grid localization using the Bayes filter using a simulator.
+            </p>
 
 
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">Subheading</h3>
-                    <p>Text.</p>
+                    <h3 class="mb-0">Bayes Filter</h3>
+                    <p>
+                        The Bayes Filter is used to estimate the state of the robot based on odometry and sensor data
+                        and prior belief of the state. We used this filter to simulate localization of the robot. The
+                        first step of the Bayes filter is prediction. This step uses odometry data and the current
+                        state. The next step is the update step which uses the sensor data. The lab10 notebook that was
+                        provided to us set up the filter for us using 5 functions. In this lab we wrote those functions
+                        and simulated grid localization for the given sample trajectory. The 5 functions are detailed
+                        below.
+                    </p>
+
+
                 </div>
             </div>
 
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">COMPUTE CONTROL</h3>
+                    <p>
+                        This function uses the current and previous state of the robot to calculate the control input of
+                        the Bayes FIlter. The control input consists of rotation and translation components.
+                    </p>
+                    <script src="https://gist.github.com/bhadrab/a51c309625cb009ce7d3e00cdb4110a4.js"></script>
 
-        </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">ODOMETRY MOTION MODEL</h3>
+                    <p>
+                        This function uses a gaussian distribution to calculate the probability that the movement in the
+                        previous step occurred i.e the probability that the robot is in the current pose give the
+                        previous pose and the control input.
+                    </p>
+                    <script src="https://gist.github.com/bhadrab/0a473dc3f16bac3a8a902f020078022c.js"></script>
+
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">PREDICTION STEP</h3>
+                    <p>
+                        This function was used to predict the position of the robot. We loop through all the previous
+                        and current states and calculate the probability that the robot is in each of those states. If
+                        the previous belief was greater than 0.0001 the odometry_motion_model function was used to
+                        calculate the probability, if it was less than 0.0001 no calculations are done because the state
+                        does not need to be considered as it is not likely.
+                    </p>
+
+                    <script src="https://gist.github.com/bhadrab/5efd896c4589854045e1f5089451e150.js"></script>
+
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">SENSOR MODEL</h3>
+                    <p>
+                        This function uses a Gaussian to calculate the probability of sensor readings given the robots
+                        state. For the Gaussian, the true observation is set as the mean and we have a value
+                        sensor_sigma which is the standard deviation. An array is returned containing the likelihoods of
+                        the sensor measurements.
+                    </p>
+
+                    <script src="https://gist.github.com/bhadrab/7e0c120ee4cc077d335f2f52a93fd004.js"></script>
+
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">UPDATE STEP</h3>
+                    <p>
+                        In this function we use the previously calculated sensor measurements and control inputs to
+                        calculate the belief that the robot is in each state. In each state we calculate the relief by
+                        multiplying the prediction belief and the probability based on the sensor data.
+                    </p>
+                    <script src="https://gist.github.com/bhadrab/e2876d1094438276361cdd54345e6b4f.js"></script>
+
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-1">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Video</h3>
+                    <video class="mb-3" width="100%" controls="">
+                        <source src="assets/img/lab10video.mp4.mp4" type="video/mp4">
+                    </video>
+
+                </div>
+                
+                
+            </div>
+            <p>
+                I unfortunatley was not able to zoom into the plotter for some reason but I ran my code on my lab
+                partners device and made sure that the plotter output was as expected.
+            </p>
+
+            <p>
+                I referred to <a href="https://tiffanyguo8.github.io/ECE4160/lab10.html#">Tiffany's</a> and <a href="https://rafigott.github.io/Fast-Robots-RafaelGottlieb/#Lab10">Rafael's</a> pages whenever I was confused.
+            </p>
+
+
     </section>
 
     <!-- Bootstrap core JS-->
