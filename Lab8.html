@@ -88,15 +88,70 @@
 
     <section class="resume-section" id="experience">
         <div class="resume-section-content">
-            <h2 class="mb-5">Lab 8 <span class="text-primary">Stunts</span></h2>
+            <h2 class="mb-2">Lab 8 <span class="text-primary">Stunts</span></h2>
+            <p class="mb-5">
+                The goal of this lab was to combine everything done in the last few labs to execute a stunt as fast as
+                possible.
+            </p>
 
 
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">Subheading</h3>
-                    <p>Text.</p>
+                    <h3 class="mb-0">Position Control</h3>
+                    <p>
+                        As done in lab 6 and 7 I continued to do the position control task. This involved starting the
+                        robot about 3m away from the wall, performing a flip on a sticky mat 0.5m from the wall and then
+                        returning to the starting line. The goal was to complete this as fast as possible.
+                    </p>
+                    <p>
+                        I decided to use my Kalman Filter and disengage my PID controller to complete this task. I used
+                        the KF since it was the fastest method to determine when 0.5m was reached. The PID controller
+                        was based on position control which would mean that the robot would slow down as it reached the
+                        target which is not what we want for this stunt.
+                    </p>
+                    <p>
+                        For the Kalman Filter I kept my A and B matrices the same as the sample rate did not change by a
+                        lot but I did reduce my reliance on the TOF sensor since less reliance was needed to be accurate
+                        to 0.5m than the previous 0.304m. This made my KF even faster.
+                    </p>
+                    <p>
+                        My control looked like the below:
+                    </p>
+                    <ol>
+                        <li>Forward at 255 PWM</li>
+                        <li>At 0.5m, backward at 255 PWM for 0.5s</li>
+                        <li>0 PWM for 0.05s to stop the motors while flipping so that orientation doesn't change much
+                        </li>
+                        <li>Return at 255 PWM backward</li>
+                    </ol>
+                    <script src="https://gist.github.com/bhadrab/736aa4923ec10be455770c58aa715d89.js"></script>
                 </div>
             </div>
+
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-4">Results</h3>
+
+                    <h3 class="mb-2">Trial 1</h3>
+                    <video class="mb-3" width="300" controls="">
+                        <source src="assets/img/lab10trial1.mp4" type="video/mp4">
+                    </video>
+                    <img class="mb-4" src="assets/img/lab10plot1.png" alt="" title="" width="100%">
+                    <h3 class="mb-2">Trial 2</h3>
+                    <video class="mb-3" width="300" controls="">
+                        <source src="assets/img/lab10trial2.mp4" type="video/mp4">
+                    </video>
+                    <img class="mb-4" src="assets/img/lab10plot1.png" alt="" title="" width="100%">
+                    <h3 class="mb-2">Trial 3</h3>
+                    <video class="mb-3" width="300" controls="">
+                        <source src="assets/img/lab10trial3.mp4" type="video/mp4">
+                    </video>
+                    <img class="mb-4" src="assets/img/lab10plot1.png" alt="" title="" width="100%">
+
+                </div>
+            </div>
+
 
 
         </div>
