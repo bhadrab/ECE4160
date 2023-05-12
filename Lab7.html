@@ -162,9 +162,11 @@
                     <p>
                         To my surprise it worked extremely well (so surprisingly well that I really thought I must have
                         done something wrong so I went through and checked my code and calculations multiple times), the
-                        predicted values were very close to the measured values. I still experimented with different
-                        values because I was curious about how the filter would be affected. I noticed that lower
-                        sigma;<sub>1</sub> and &sigma;<sub>2</sub> or higher &sigma;<sub>3</sub> made the KF prediction
+                        predicted values were very close to the measured values. I think they match so well because the
+                        sensor uncertainty is not very high, we can see that the KF steps when the sensor readings step
+                        although it also does predict value in between. I experimented with different sigma values
+                        because I was curious about how the filter would be affected. I noticed that higher
+                        &sigma;<sub>1</sub> and &sigma;<sub>2</sub> or lower &sigma;<sub>3</sub> made the KF prediction
                         match the measured data better. This makes sense because by doing this we are putting more trust
                         in our sensor data.
                     </p>
@@ -196,13 +198,15 @@
                     <video class="mb-3" width="300" controls="">
                         <source src="assets/img/lab7.mp4" type="video/mp4">
                     </video>
-                    
+
                     <script src="https://gist.github.com/bhadrab/5251c927bab5cd73b3c909db1d7c1b3c.js"></script>
                 </div>
             </div>
 
             <p>
-                I referred to <a href="https://anyafp.github.io/ece4960/labs/lab7/">Anya's</a> and <a href="https://pages.github.coecis.cornell.edu/rc627/ECE-4960/lab7.html">Ryan's</a> pages whenever I was confused.
+                I referred to <a href="https://anyafp.github.io/ece4960/labs/lab7/">Anya's</a> and <a
+                    href="https://pages.github.coecis.cornell.edu/rc627/ECE-4960/lab7.html">Ryan's</a> pages whenever I
+                was confused.
             </p>
 
 
