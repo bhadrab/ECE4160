@@ -99,8 +99,9 @@
                     <h3 class="mb-0">Prelab : Debugging Data</h3>
                     <p>I created a command START_PID that will be called on the computer side to run PID for 40s. While
                         the robot was running, time, TOF, and PWM data were collected and stored in arrays on the
-                        Artemis side. Upon completion, the data was sent back to the computer. Only one of the ToFs on
-                        the front was used.
+                        Artemis side. Upon completion, the data was sent back to the computer.Only one of the ToFs on
+                        the front was used as I noticed that just one was enough to provide high
+                        accuracy.
                     </p>
 
                     <script src="https://gist.github.com/bhadrab/25aa2a4497b0fe5e8197c7113132969e.js"></script>
@@ -128,6 +129,25 @@
                         value in the 2022 class. I found it to work well but was extremley slow. I increased that value
                         and found that anything above 0.04 was causing too much overshoot.
                     </p>
+                    <hr>
+                    </hr>
+                    <h4 class="mb-0">Range and Sampling Time</h4>
+                    <p>
+                        I used the long distance mode which allows a range of 3.6m. I was considering adding code to
+                        switch to the short mode after a certain distance threshold but the long mode provided
+                        sufficient accuracy even close to the wall. I tested the controller starting at various points
+                        between 3.5m and 0.1m. The further I started there was slightly more overshoot because of the
+                        momentum the car picked up (this was really only seen at Kp = 0.04 not at 0.03). If I started
+                        too close, sometimes 40 PWM was not enough of a starting speed to get the car moving (was more
+                        of an issue on carpet than smooth floor).
+                    </p>
+                    <p>
+                        I found the sampling time was about 40ms. I made sure that the distance was only being read and
+                        stored whenever new data was ready. Data is also only being sent once the target has been
+                        reached which reduces the sampling time. This sampling time is likely what causes any overshoot
+                        but it is small enough to still have a successful controller.
+                    </p>
+
                     <hr>
                     </hr>
                     <h4 class="mb-0">PID Function</h4>

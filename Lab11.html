@@ -90,7 +90,7 @@
         <div class="resume-section-content">
             <h2 class="mb-2">Lab 11 <span class="text-primary">Localisation Real</span></h2>
             <p class="mb-5">
-                The goal of this lab was to use an optimised Bayes Filter to perform localisation on the real robot.
+                The goal of this lab was to use an optimised Bayes filter to perform localisation on the real robot.
             </p>
 
 
@@ -99,11 +99,11 @@
                     <h3 class="mb-0">Simulator</h3>
 
                     <p>
-                        I first tested the Bayes Filter that was provided to us in the simulator. We can see the that
-                        ground truth and belief are quite similar.
+                        I first tested the Bayes filter that was provided to us in the simulator. We can see that the
+                        ground truth and belief are quite similar (green and blue repectivley).
                     </p>
 
-                    <img class="mb-4" src="assets/img/lab11simulation.png" alt="" title="" width="100%">
+                    <img class="mb-4" src="assets/img/lab11simulation.png" alt="" title="" width="80%">
 
                 </div>
             </div>
@@ -112,25 +112,48 @@
                 <div class="flex-grow-1">
                     <h3 class="mb-0">Observation Loop</h3>
                     <p>
-                        I needed to collect position data at 20&deg; increments. As I saw Anya do for her lab, I decided
-                        to reuse my code from lab 9 but only store ToF readings at 20$deg; increments.
+                        On the Robot side, I needed to spin the robot counter clockwise and collect position data at
+                        20&deg; increments. I decided to spin the robot 20$deg;, stop, collect ToF data, and then spin
+                        another 20&deg;, till 360&deg; was reached.
                     </p>
+
+                    <p>
+                        On the computer side I wrote the perform_observation_loop() function that prompts the Robot to
+                        start turning and sending data, and then formats the received data to be used for the
+                        localisation code.
+                    </p>
+
                 </div>
             </div>
 
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">Subheading</h3>
-                    <p>Text.</p>
+                    <h3 class="mb-0">Localise the Robot!</h3>
+
+                    <p>
+                        I placed the Robot on each of the 4 marked poses and ran the update step of the Bayes filter.
+                    </p>
+
+                    <h4 class="mb-0">(-3,-2)</h4>
+                    <img class="mb-4" src="assets/img/lab11main.png" alt="" title="" width="100%">
+
+                    <h4 class="mb-0">(5,-3)</h4>
+                    <img class="mb-4" src="assets/img/lab11main.png" alt="" title="" width="100%">
+
+                    <h4 class="mb-0">(0,3)</h4>
+                    <img class="mb-4" src="assets/img/lab11main.png" alt="" title="" width="100%">
+
+                    <h4 class="mb-0">(5,3)</h4>
+                    <img class="mb-4" src="assets/img/lab11main.png" alt="" title="" width="100%">
+
+
+
+
                 </div>
             </div>
 
-            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="flex-grow-1">
-                    <h3 class="mb-0">Subheading</h3>
-                    <p>Text.</p>
-                </div>
-            </div>
+
+
 
 
         </div>
