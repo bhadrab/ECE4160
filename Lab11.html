@@ -113,14 +113,16 @@
                     <h3 class="mb-0">Observation Loop</h3>
                     <p>
                         On the Robot side, I needed to spin the robot counter clockwise and collect position data at
-                        20&deg; increments. I decided to spin the robot 20$deg;, stop, collect ToF data, and then spin
-                        another 20&deg;, till 360&deg; was reached.
+                        20&deg; increments. My lab 9 code had a high enough resolution so I reused that but I collected
+                        orientation data as well and only stored data for multiples of 20&deg;
                     </p>
 
                     <p>
-                        On the computer side I wrote the perform_observation_loop() function that prompts the Robot to
-                        start turning and sending data, and then formats the received data to be used for the
-                        localisation code.
+                        I needed to use two different computers because the bluetooth connection only works
+                        on one and the simulator only works on the other one :'(. I used one computer to receive data
+                        (same as I did in lab 9) and I hardcoded that data into the other computer to use for the
+                        simulation. So the perform_observation_loop() function on the computer side just returns the
+                        hardcoded data and does not actually prompt the robot to spin or collect data.
                     </p>
 
                 </div>
@@ -132,19 +134,27 @@
 
                     <p>
                         I placed the Robot on each of the 4 marked poses and ran the update step of the Bayes filter.
+                        The blue dot represents the belief and the green reprsents the ground truth. I also used the
+                        black and white grid to quantify the accuracy.
                     </p>
 
                     <h4 class="mb-0">(-3,-2)</h4>
-                    <img class="mb-4" src="assets/img/lab11main.png" alt="" title="" width="100%">
+                    <img class="mb-4" src="assets/img/lab1132.png" alt="" title="" width="45%">
+                    <img class="mb-4" src="assets/img/lab1132bw.png" alt="" title="" width="45%">
 
                     <h4 class="mb-0">(5,-3)</h4>
-                    <img class="mb-4" src="assets/img/lab11main.png" alt="" title="" width="100%">
+                    <img class="mb-4" src="assets/img/lab1153.png" alt="" title="" width="45%">
+                    <img class="mb-4" src="assets/img/lab1153bw.png" alt="" title="" width="45%">
 
                     <h4 class="mb-0">(0,3)</h4>
-                    <img class="mb-4" src="assets/img/lab11main.png" alt="" title="" width="100%">
+                    <img class="mb-4" src="assets/img/lab1103.png" alt="" title="" width="45%">
+                    <img class="mb-4" src="assets/img/lab1103bw.png" alt="" title="" width="45%">
 
                     <h4 class="mb-0">(5,3)</h4>
-                    <img class="mb-4" src="assets/img/lab11main.png" alt="" title="" width="100%">
+                    <img class="mb-4" src="assets/img/lab1153up.png" alt="" title="" width="45%">
+                    <img class="mb-4" src="assets/img/lab1153upbw.png" alt="" title="" width="45%">
+
+                    <h4 class="mb-0">Discussion</h4>
 
 
 
