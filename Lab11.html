@@ -155,6 +155,20 @@
                     <img class="mb-4" src="assets/img/lab1153upbw.png" alt="" title="" width="45%">
 
                     <h4 class="mb-0">Discussion</h4>
+                    <p>
+                        For (0,3) and (5,3) the x position was perfect but the y position was exactly 0.3m lower. I was
+                        confused as to why I would see the same error in both. I plotted my data points (shown below) and saw that the top
+                        wall was read to be at about 1.5m while the real one is at 1.4m this means the robot thought it
+                        was further from the wall than it actually was. I think this could be because of the lighting on
+                        that side of the room or something to do with the surface of that wood because I got consistent
+                        wrong results. For (-3,-2) I seem to have the opposite problem where the robot thought it was
+                        closer to the wall than it was and this issue can also be seen in the plot. This points to the
+                        fact that the issue is with the ToF sensor and not the localisation code. I know this is not an
+                        issue with the way the Robot is being spun because the angles I received from the IMU were
+                        increments of 20 with very little error. The issue is also too consistent to be anything else
+                        (in fact, I saw very similar results in lab 9)
+                    </p>
+                    <img class="mb-4" src="assets/img/lab11plotted.png" alt="" title="" width="45%">
 
 
 
