@@ -29,8 +29,8 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="hidescrollbar collapse navbar-collapse navbar-nav-scroll" id="navbarResponsive">
             <ul class="navbar-nav ">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html">
-                        Home
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html">Home
+                        <img src="assets/img/indexmain.PNG" alt="Lab 1 Artemis" title="Home Page " height="90px" />
                     </a>
                 </li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="Lab1.html">Lab 1
@@ -88,13 +88,26 @@
 
     <section class="resume-section" id="experience">
         <div class="resume-section-content">
-            <h2 class="mb-5">Lab 12 <span class="text-primary">Planning and execution</span></h2>
+            <h2 class="mb-2">Lab 12 <span class="text-primary">Path Planning and Execution</span></h2>
+            <p class="mb-5">
+                In this final lab, we use everything we have worked on thus far to make the Robot navigate to certain
+                waypoints.
+            </p>
+
 
 
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
-                    <h3 class="mb-0">Subheading</h3>
+                    <h3 class="mb-0">Planning</h3>
                     <p>Text.</p>
+                    <video id="myVideo" class="mb-3" width="600" controls>
+                        <source src="assets/img/Lab12planning.mp4" type="video/mp4">
+                    </video>
+
+                    <script>
+                        var video = document.getElementById("myVideo");
+                        video.playbackRate = 3;
+                    </script>
                 </div>
             </div>
 
