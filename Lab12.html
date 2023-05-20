@@ -90,8 +90,8 @@
         <div class="resume-section-content">
             <h2 class="mb-2">Lab 12 <span class="text-primary">Path Planning and Execution</span></h2>
             <p class="mb-5">
-                In this final lab, we use everything we have worked on thus far to make the Robot navigate to certain
-                waypoints.
+                In this final lab, we use everything we have worked on thus far to make the robot navigate to certain
+                waypoints in a maze.
             </p>
 
 
@@ -99,15 +99,154 @@
             <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="flex-grow-1">
                     <h3 class="mb-0">Planning</h3>
-                    <p>Text.</p>
-                    <video id="myVideo" class="mb-3" width="600" controls>
-                        <source src="assets/img/Lab12planning.mp4" type="video/mp4">
-                    </video>
+                    <p>
+                        We were tasked with hitting the following waypoints:
+                    </p>
+                    <ol>
+                        <li>(-4, -3) &lt;--start</li>
+                        <li>(-2, -1)</li>
+                        <li>(1, -1)</li>
+                        <li>(2, -3)</li>
+                        <li>(5, -3)</li>
+                        <li>(5, -2)</li>
+                        <li>(5, 3)</li>
+                        <li>(0, 3)</li>
+                        <li>(0, 0) &lt;--end</li>
+                    </ol>
 
-                    <script>
-                        var video = document.getElementById("myVideo");
-                        video.playbackRate = 3;
-                    </script>
+                    <p>
+                        In order to do this, I decided to start off with PID control as it seemed to be the most robust
+                        based on my previous labs and the most time efficient since I had quite a busy end of semester.
+                        I did want to use localisation since I had great localisation results in lab 11 but I decided to
+                        get PID working before attempting this.
+                    </p>
+                    <p>
+                        I started off by planning the optimal route to take. Most waypoints are 90&deg; offset from each
+                        other which means that the robot will be travelling perpendicular to a wall. Waypoints 1->2 and
+                        3->4 would require the robot to face the wall at an angle. After reading Ryan’s and Robby’s
+                        pages from last year and talking to some people in lab this I decided that instead of trying to
+                        turn at an angle I would adjust the route so that only 90&deg; turns were executed and the
+                        robotF was always perpendicular to a wall.
+                    </p>
+                    <p>
+                        The following is the route I planned
+                    </p>
+                    <img class="mb-4" src="assets/img/lab12path.jpg" alt="" title="" width="60%">
+                    <p>
+                        The next step was to take measurements to determine the PID values. I went off the number of
+                        tiles knowing that the edge of the square tile was 304mm. These values continued to be tuned as
+                        I ran trials because in order for the robot to be at the waypoint after turning, the target
+                        distance needs to be further north of the waypoint. These are the values I landed on.
+                    </p>
+                    <video class="mb-0" width="60%" autoplay loop muted>
+                        <source src="assets/img/Lab12planning.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>
+                        <em style="font-size: 12px;">
+                            All values are in mm. I accidentally wrote "m" for the first value.
+                        </em>
+                    </p>
+
+
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">(P)ID</h3>
+                    <p>
+                        For the straight stretches I used my PID code from lab 6. Since I was not worried about speed
+                        for this lab I did not use the Kalman Filter. This controller used distance from the ToF as
+                        inputs and a proportional controller to reach the target distance. A kp value of 0.04 was used.
+                        This controller was incredibly robust and was working perfectly.
+                    </p>
+                    <script src="https://gist.github.com/bhadrab/78221e0db9bce86be1d78898645ecb90.js"></script>
+                    <p>
+                        For the turns I considered using open loop turning because I did not have orientation control
+                        implemented but the lab surface and the battery drain played very large factors in the amount of
+                        time needed to complete a 90&deg; turn. So I decided to use PID orientation control to have a
+                        more robust solution. This took some more time to implement as I had not used it yet. This
+                        controller uses gyroscope readings from the IMU and a proportional controller to reach the
+                        target angle. A kp value of 0.9 was used.
+                    </p>
+                    <script src="https://gist.github.com/bhadrab/81a70b00dfbaa5cf10823d88487cf508.js"></script>
+                    <p>
+                        I added cases to respond to commands sent from the computer side and receive the target values.
+                        These cases read the sensor values and runs the PID controllers for 5 seconds.
+                    </p>
+                    <div style=" height: 500px; overflow: auto;">
+                        <script src="https://gist.github.com/bhadrab/7fc3a42777408888df3da7449778f694.js"></script>
+                    </div>
+                    <p>
+                        The turning controller was not extremely consistent, the condition of the lab floor played a
+                        very large role in how much the robot would turn. I tested it in the same spot multiple times
+                        before putting it in the arena. My results were great with the robot turning to the exact angle
+                        I asked it to. In the arena however, at each waypoint it seemed like the target had to be set to
+                        an angle between 80 and 90 in order for the robot to turn exactly 90&deg;. Luckily at each
+                        waypoint, the angle needed seemed to stay consistent between runs but because of the number of
+                        people needing to use the arena during lab hours, it took a long time to tune each of the angles
+                        correctly.
+                    </p>
+
+
+
+
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Computer Side Commands</h3>
+                    <p>
+                        The computer side code for this lab was very simple as I was not receiving data.I sent commands
+                        to prompt the robot to move to each way point. I had a separate cell in my jupyter notebook for
+                        each waypoint so that I could test my system in pieces.
+                    </p>
+                    <script src="https://gist.github.com/bhadrab/b8085f60cf7625dcdd71aae6874966ac.js"></script>
+
+
+
+
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Results</h3>
+                    <p>
+                        This video is three separate runs spliced together. The first run was stopped since my laptop
+                        died during the run and the second run we decided to reset because our angle tuning was not
+                        great and the error would compound for the last two waypoints. Because there were so many people
+                        waiting to use the arena we started each new run at the spot it previously failed so that we
+                        could run the robot in the back half while other teams ran there's in the front half.
+                    </p>
+
+                    <video class="mb-3" width="100%" controls="">
+                        <source src="assets/img/lab12result1.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Acknowledgments</h3>
+                    <p>
+                        <a href="https://abioticfactor.github.io/fast-robots/">Tobi</a> and I started off this lab
+                        working alone but when we realised that we both had similar code we decided to work together to
+                        debug and tune to get a better run.
+                    </p>
+                    <p>
+                        I referenced <a
+                            href="https://pages.github.coecis.cornell.edu/rc627/ECE-4960/lab13.html">Ryan’s</a> and <a
+                            href="https://lh479.github.io/ECE4960/">Robby's</a> pages for guidance on this lab. Thank
+                        you to Kirstin and all the
+                        TA's for hosting so many open lab hours and being so helpful in getting this lab done.
+                    </p>
+                    <p>
+                        This lab concludes the course. It has been a great semester gaining exposure to so many building
+                        blocks of robotics, definitely my favourite class I have taken so far.
+                    </p>
                 </div>
             </div>
 
