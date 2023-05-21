@@ -225,6 +225,23 @@
                     <video class="mb-3" width="100%" controls="">
                         <source src="assets/img/lab12result1.mp4" type="video/mp4">
                     </video>
+
+                    <p>
+                        This was the best consecutive run we accomplished, we had to manually adjust the robot at 2
+                        points. The first was because the robot spun off axis too much when turning and was detecting
+                        the box instead of the wall. The second was because at way point 7, the robot spun out of
+                        control when executing the orientation PID. This was something that happened every now and then
+                        and the error was not consistently replicable which made debugging very hard. Both Tobi and I
+                        faced the same error in the code that we wrote alone. When this error happened it caused the
+                        distance PID to stop working as well. We spent a lot of time trying to figure out what the issue
+                        was but we were unsuccessful. We wanted to at least isolate the issue so that the distance PID
+                        would not be affected by making sure there were no shared variables. This did not seem to help.
+                        We were also tuning angles as we went in this run to collect data for the proceeding runs.
+                    </p>
+
+                    <video class="mb-3" width="100%" controls="">
+                        <source src="assets/img/lab12result2.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
 
